@@ -23,12 +23,12 @@
     <div class="container">
         <div class="row">
             <!-- Left side of the screen, where the player initially picks a character -->
-            <div class="col-xs-5">
+            <div class="col-xs-5 beginning-stats">
                 <!-- Stat card for Jack O'Neill -->
                 <div class="row stat-card" id="jack">
                     <!-- Jack image and name on the left of stat card -->
                     <div class="col-xs-9 theTeam" id="jackLeft">
-                    <img class="img-responsive" src="assets/images/Jack-Oneill.jpg" alt="Jack O'Neill"> 
+                    <img class="img-responsive characters" id="jackImg" src="assets/images/Jack-Oneill.jpg" alt="Jack O'Neill"> 
                     <h1 class="text-center text-normal">Jack O'Neill</h1>   
                     </div>
                     <!-- Jack's stats on the right side of the stat card -->
@@ -45,7 +45,7 @@
                 <div class="row stat-card" id="sam">
                     <!-- Left side of Sam's stat card -->
                     <div class="col-xs-9 theTeam" id="samLeft">
-                        <img class="img-responsive" src="assets/images/Sam-Carter.jpg" alt="Samantha Carter">
+                        <img class="img-responsive characters" id="samImg" src="assets/images/Sam-Carter.jpg" alt="Samantha Carter">
                         <h1 class="text-center text-normal">Dr. Samantha Carter</h1>                           
                     </div>
                     <!-- Sam's stats -->
@@ -62,7 +62,7 @@
                 <div class="row stat-card" id="tealc">
                     <!-- Teal'c's image and name on the left side of stat card -->
                     <div class="col-xs-9 theTeam text-center" id="tealcLeft">
-                        <img class="img-responsive" src="assets/images/Tealc.jpg" alt="Teal'c the Jaffa">
+                        <img class="img-responsive characters" id="tealcImg" src="assets/images/Tealc.jpg" alt="Teal'c the Jaffa">
                         <h1 class="text-center text-normal">Teal'c the Jaffa</h1>   
                         
                     </div>
@@ -79,8 +79,8 @@
                 <!-- Daniel's stat card -->
                 <div class="row stat-card" id="daniel">
                     <!-- Daniel's image and name on the left side of the stat card -->
-                    <div class="col-xs-9 theTeam" alt="danielLeft">
-                        <img class="img-responsive" src="assets/images/Daniel-Jackson.jpg" alt="Daniel Jackson">
+                    <div class="col-xs-9 theTeam" id="danielLeft">
+                        <img class="img-responsive characters" id="danielImg" src="assets/images/Daniel-Jackson.jpg" alt="Daniel Jackson">
                         <h1 class="text-center text-normal">Dr. Daniel Jackson</h1>                           
                     </div>
                     <!-- Daniel's stats -->
@@ -94,13 +94,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-5">
-                <div id="chosen-character"></div>
+            <div class="col-xs-5 arena">
                 <div id="enemy-character"></div>
+                <div id="chosen-character"></div>
+                <div id="attack-button"></div>
             </div>
             <div class="col-xs-2">
                         <div class="row">
-                            <div class="col-xs-12" id="enemy-HP">
+                            <div class="col-xs-12 instructions" id="enemy-HP">
                             </div>
                         </div>
                         <div class="row">

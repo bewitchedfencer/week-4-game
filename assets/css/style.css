@@ -9,18 +9,37 @@ body{
 /* font-family: 'Martel', serif; */
 
 
-
+/* images for the characters */
 img{
     width:40%;
     height:80px;
     margin:20px;
+    border-radius: 10%;
+    /* border so that the selected images can glow */
+ }
+
+/* active status to make the images glow when selected */
+.glowing-choice{
+        
+            -webkit-box-shadow: 0 0 50px orange;
+               -moz-box-shadow: 0 0 50px orange;
+                    box-shadow: 0 0 50px orange;
+        }
+
+.glowing-enemy{
+    -webkit-box-shadow: 0 0 50px blue;
+    -moz-box-shadow: 0 0 50px blue;
+         box-shadow: 0 0 50px blue;
 }
 
+/* the box holding each of the images and the names together */
 .theTeam{
+    /* position allows the name to be placed in the correct location on pic */
     position:relative;
     
 }
 
+/* Text for the names of the characters */
 .text-normal{
     font-family: 'Martel', serif;
     background-color:rgba(0,0,0, .9);
@@ -34,19 +53,30 @@ img{
     
 }
 
+.instructions{
+    font-family: 'Martel', serif;
+    background-color:rgba(0,0,0, .9);
+    color:white;
+    font-size:50px;
+    margin-top:200px;
+
+}
+
+/* the box holding the stat information on the stat cards */
 .stats{
     font-family: 'Martel', serif;
     color:rgb(255, 255, 255);
-    font-size:15px;
+    font-size:12px;
     margin-left: -100px;
     margin-top:10px;
     width: 30%;
     
 }
+/* The headings for the stats */
 .statHeading{
     font-size:15px;
 }
-
+/* The box holding the entire stat card including the stats and the picture */
 .stat-card{
     background-color:rgba(0,0,0,.8); 
     border: 5px solid gold;
@@ -55,6 +85,7 @@ img{
     margin-left:-10%;
     width:100%;
 }
-/* .selected-Character{
 
-} */
+.arena{
+    margin-top: 140px;
+}
