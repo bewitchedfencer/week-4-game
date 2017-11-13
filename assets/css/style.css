@@ -1,3 +1,5 @@
+
+/* Stargate image */
 body{
     background-image: url(../images/stargate.jpg);
     background-size: cover;
@@ -6,6 +8,53 @@ body{
 
 /* font-family: 'Martel', serif; */
 
-div{
-    background-color:rgba(255, 255, 255, .3);
+
+
+img{
+    width:40%;
+    height:80px;
+    margin:20px;
 }
+
+.theTeam{
+    position:relative;
+    
+}
+
+.text-normal{
+    font-family: 'Martel', serif;
+    background-color:rgba(0,0,0, .9);
+    color:white;
+    font-size:15px;
+    position:absolute;
+    bottom:30px;
+    width:40%;
+    margin-left:10px;
+    padding:10px;
+    
+}
+
+.stats{
+    font-family: 'Martel', serif;
+    color:rgb(255, 255, 255);
+    font-size:15px;
+    margin-left: -100px;
+    margin-top:10px;
+    width: 30%;
+    
+}
+.statHeading{
+    font-size:15px;
+}
+
+.stat-card{
+    background-color:rgba(0,0,0,.8); 
+    border: 5px solid gold;
+    border-radius:15%;  
+    margin:5px;
+    margin-left:-10%;
+    width:100%;
+}
+/* .selected-Character{
+
+} */
