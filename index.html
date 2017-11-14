@@ -21,103 +21,124 @@
 
 <body>
     <div class="container">
-        <div class="row">
+        <div class="row beginning-stats">
             <!-- Left side of the screen, where the player initially picks a character -->
-            <div class="col-xs-5 beginning-stats">
-                <!-- Stat card for Jack O'Neill -->
-                <div class="row stat-card" id="jack">
-                    <!-- Jack image and name on the left of stat card -->
-                    <div class="col-xs-9 theTeam" id="jackLeft">
-                    <img class="img-responsive characters" id="jackImg" src="assets/images/Jack-Oneill.jpg" alt="Jack O'Neill"> 
-                    <h1 class="text-center text-normal">Jack O'Neill</h1>   
-                    </div>
-                    <!-- Jack's stats on the right side of the stat card -->
-                    <div class="col-xs-3 stats text-center" id="jackStats">
-                        <h1 class="statHeading">Stats</h1>
-                        <hr>
-                        <p>Health<span id="jackHealth"></span></p>
-                        <p>Attack<span id="jackBaseAttack"></span></p>
-                        <p>Counter Attack<span id="jackCounterAttack"></span></p>                        
-                        <p>Special Power: Sarcasm</p>
-                    </div>
+            <!-- Stat card for Jack O'Neill -->
+            <!-- Jack image and name on the left of stat card -->
+            <div class="col-xs-3" >
+                <div class="row  stat-card" id="jack">
+                <div class="col-xs-6">
+                        <h1 class="text-center text-normal">Jack O'Neill</h1>                        
+                    <img class="img-responsive characters" id="jackImg" src="assets/images/Jack-Oneill.jpg" alt="Jack O'Neill">
                 </div>
-                <!-- Sam's stat card -->
-                <div class="row stat-card" id="sam">
-                    <!-- Left side of Sam's stat card -->
-                    <div class="col-xs-9 theTeam" id="samLeft">
-                        <img class="img-responsive characters" id="samImg" src="assets/images/Sam-Carter.jpg" alt="Samantha Carter">
-                        <h1 class="text-center text-normal">Dr. Samantha Carter</h1>                           
-                    </div>
-                    <!-- Sam's stats -->
-                    <div class="col-xs-3 stats text-center" id="samStats">
-                        <h1 class="statHeading">Stats</h1>
-                        <hr>
-                        <p>Health<span id="samHealth"></span></p>
-                        <p>Attack<span id="samBaseAttack"></span></p>
-                        <p>Counter Attack<span id="samCounterAttack"></span></p>                                                
-                        <p>Special Power: Astrophysics</p>
-                    </div>
-                </div>
-                <!-- Teal'c's stat card -->
-                <div class="row stat-card" id="tealc">
-                    <!-- Teal'c's image and name on the left side of stat card -->
-                    <div class="col-xs-9 theTeam text-center" id="tealcLeft">
-                        <img class="img-responsive characters" id="tealcImg" src="assets/images/Tealc.jpg" alt="Teal'c the Jaffa">
-                        <h1 class="text-center text-normal">Teal'c the Jaffa</h1>   
-                        
-                    </div>
-                    <!-- Teal'c's stats -->
-                    <div class="col-xs-3 stats text-center" id="tealcStats">
-                        <h1 class="statHeading">Stats</h1>
-                        <hr>
-                        <p>Health<span id="tealcHealth"></span></p>
-                        <p>Attack<span id="tealcBaseAttack"></span></p>
-                        <p>Counter Attack<span id="tealcCounterAttack"></span></p>                                                
-                        <p>Special Power: Super Strength</p>
-                    </div>
-                </div>
-                <!-- Daniel's stat card -->
-                <div class="row stat-card" id="daniel">
-                    <!-- Daniel's image and name on the left side of the stat card -->
-                    <div class="col-xs-9 theTeam" id="danielLeft">
-                        <img class="img-responsive characters" id="danielImg" src="assets/images/Daniel-Jackson.jpg" alt="Daniel Jackson">
-                        <h1 class="text-center text-normal">Dr. Daniel Jackson</h1>                           
-                    </div>
-                    <!-- Daniel's stats -->
-                    <div class="col-xs-3 stats text-center" id="danielStats">
-                        <h1 class="statHeading">Stats</h1>
-                        <hr>
-                        <p>Health<span id="danielHealth"></span></p>
-                        <p>Attack<span id="danielBaseAttack"></span></p>
-                        <p>Counter Attack<span id="danielCounterAttack"></span></p>                                                
-                        <p>Special Power: Research</p>
-                    </div>
-                </div>
+                <!-- Jack's stats on the right side of the stat card -->
+                <div class="text-center col-xs-6 stats" id="jackStats">
+                    <h1 class="statHeading">Stats</h1>
+                    <hr>
+                    <p>Health
+                        <span id="jackHealth"></span>
+                    </p>
+                    <p>Attack
+                        <span id="jackBaseAttack"></span>
+                    </p>
+                    <p>Counter Attack
+                        <span id="jackCounterAttack"></span>
+                    </p>
+                    <p>Special Power: Sarcasm</p>
+                </div></div>
             </div>
-            <div class="col-xs-5 arena">
-                <div id="enemy-character"></div>
-                <div id="chosen-character"></div>
+            <!-- Sam's stat card -->
+            <!-- Left side of Sam's stat card -->
+            <div class="col-xs-3">
+             <div class="row stat-card" id="sam">
+                <div class="col-xs-6">
+                        <h1 class="text-center name text-normal">Dr. Samantha Carter</h1>                        
+                    <img class="img-responsive characters" id="samImg" src="assets/images/Sam-Carter.jpg" alt="Samantha Carter">
+                </div>
+                <!-- Sam's stats -->
+                <div class="stats col-xs-6 text-center" id="samStats">
+                    <h1 class="statHeading">Stats</h1>
+                    <hr>
+                    <p>Health
+                        <span id="samHealth"></span>
+                    </p>
+                    <p>Attack
+                        <span id="samBaseAttack"></span>
+                    </p>
+                    <p>Counter Attack
+                        <span id="samCounterAttack"></span>
+                    </p>
+                    <p>Special Power: Astrophysics</p>
+                </div></div>
+            </div>
+            <!-- Teal'c's stat card -->
+            <!-- Teal'c's image and name on the left side of stat card -->
+            <div class="col-xs-3">
+                <div class="row stat-card" id="tealc">
+                <div class="col-xs-6">
+                        <h1 class="text-center name text-normal">Teal'c the Jaffa</h1>                        
+                    <img class="img-responsive characters" id="tealcImg" src="assets/images/Tealc.jpg" alt="Teal'c the Jaffa">
+                </div>
+                <!-- Teal'c's stats -->
+                <div class="stats col-xs-6 text-center" id="tealcStats">
+                    <h1 class="statHeading">Stats</h1>
+                    <hr>
+                    <p>Health
+                        <span id="tealcHealth"></span>
+                    </p>
+                    <p>Attack
+                        <span id="tealcBaseAttack"></span>
+                    </p>
+                    <p>Counter Attack
+                        <span id="tealcCounterAttack"></span>
+                    </p>
+                    <p>Special Power: Super Strength</p>
+                </div></div>
+            </div>
+            <!-- Daniel's stat card -->
+            <!-- Daniel's image and name on the left side of the stat card -->
+            <div class="col-xs-3">
+            <div class="row stat-card" id="daniel">
+                <div class="col-xs-6">
+                    <h1 class="text-center name text-normal">Dr. Daniel Jackson</h1>
+                    <img class="img-responsive characters" id="danielImg" src="assets/images/Daniel-Jackson.jpg" alt="Daniel Jackson">
+                    
+                </div>
+                <!-- Daniel's stats -->
+                <div class=" stats col-xs-6 text-center" id="danielStats">
+                    <h1 class="statHeading">Stats</h1>
+                    <hr>
+                    <p>Health
+                        <span id="danielHealth"></span>
+                    </p>
+                    <p>Attack
+                        <span id="danielBaseAttack"></span>
+                    </p>
+                    <p>Counter Attack
+                        <span id="danielCounterAttack"></span>
+                    </p>
+                    <p>Special Power: Research</p>
+                </div>
+            </div></div> 
+        </div>
+        <div class="row arena">
+            <div class="col-xs-4" id="enemy-character"></div>
+            <div class="col-xs-4 text-center instructions">
                 <div id="attack-button"></div>
             </div>
-            <div class="col-xs-2">
-                        <div class="row">
-                            <div class="col-xs-12 instructions" id="enemy-HP">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12" id="enemy-special">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12" id="player-special">
-        
-                            </div>
-                        </div>
-                        <div class="row">
-                                <div class="col-xs-12" id="player-HP">
-            
-                                </div>
-                            </div>
+            <div class="col-xs-4" id="chosen-character"></div>
+
+        </div>
+        <div class="row specs">
+            <div class="col-xs-3 text-normal" id="enemy-HP">
+            </div>
+            <div class=" text-normal col-xs-3" id="enemy-special">
+            </div>
+            <div class="text-normal col-xs-3" id="player-special">
+            </div>
+
+            <div class="text-normal col-xs-3" id="player-HP">
+
             </div>
         </div>
     </div>

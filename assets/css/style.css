@@ -11,9 +11,8 @@ body{
 
 /* images for the characters */
 img{
-    width:40%;
-    height:80px;
-    margin:20px;
+    width:120px;
+    height:130px;
     border-radius: 10%;
     /* border so that the selected images can glow */
  }
@@ -32,33 +31,20 @@ img{
          box-shadow: 0 0 50px blue;
 }
 
-/* the box holding each of the images and the names together */
-.theTeam{
-    /* position allows the name to be placed in the correct location on pic */
-    position:relative;
-    
-}
-
 /* Text for the names of the characters */
 .text-normal{
     font-family: 'Martel', serif;
-    background-color:rgba(0,0,0, .9);
     color:white;
     font-size:15px;
-    position:absolute;
-    bottom:30px;
     width:40%;
     margin-left:10px;
-    padding:10px;
     
 }
 
 .instructions{
     font-family: 'Martel', serif;
-    background-color:rgba(0,0,0, .9);
     color:white;
     font-size:50px;
-    margin-top:200px;
 
 }
 
@@ -67,8 +53,6 @@ img{
     font-family: 'Martel', serif;
     color:rgb(255, 255, 255);
     font-size:12px;
-    margin-left: -100px;
-    margin-top:10px;
     width: 30%;
     
 }
@@ -82,10 +66,32 @@ img{
     border: 5px solid gold;
     border-radius:15%;  
     margin:5px;
-    margin-left:-10%;
+   
+}
+
+/* area where fighting occurs */
+.arena{
+    margin-top: 300px;
+}
+
+.arena-active{
+    background-color:rgba(0,0,0,.9);
+    padding:50px;
+    border-radius:10%;
+    border: 5px solid gold;
+
+}
+
+#attack-button{
+    display:flex;
+    justify-content: center;
     width:100%;
 }
 
-.arena{
-    margin-top: 140px;
+.beginning-stats{
+    width:100%;
+}
+
+#enemy-HP{
+    background-color:red;
 }

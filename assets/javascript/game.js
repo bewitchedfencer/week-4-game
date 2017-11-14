@@ -1,13 +1,17 @@
 //establish variables
 //boolean for determining if the player is choosing their character or enemy character
 var choser = false;
-var attackPhase=false;
 var player="";
 var enemy="";
+var i=-1;
+var j=-1;
+var characterArray=["jack", "sam", "tealc", "daniel"]; //is there any way to make an array of objects?
+
 
 //declared function for what happens when player selects their character
 function selectCharacters(){
     $("#enemy-HP").html("Who will you battle?");
+    $(".name").empty();
     choser=true;
     
     console.log("do you see me?");
@@ -15,7 +19,7 @@ function selectCharacters(){
     }
     //resets the screen so that 
     function clearBeginning(){
-        $(".beginning-stats").empty();
+        $(".col-xs-3").empty();
         $("#enemy-HP").empty();
         // do animation to get these off screen to the left
     }
@@ -29,6 +33,30 @@ var jackO = {
     specialCounter:0,
     specialAbility:"sarcasm"
 };
+
+   //when the player and enemy have been chosen, the following code runs.
+   function attackPhase(){
+    if((characterArray.indexOf(player)!=-1)&&(characterArray.indexOf(enemy))!=-1){
+        console.log("success");
+        $("instructions").removeClass("instructions");
+        $(".arena").addClass("arena-active");
+        //attack button appears when both characters chosen
+        $("#attack-button").addClass("btn btn-large btn-danger text-center");
+        //text for attack button is different if the player is Teal'c
+        if(player=="tealc"){
+            $("#attack-button").text("Jaffa! Cree!");        
+        }
+        //text for attack button with human characters
+        else{
+        $("#attack-button").text("Attack!");
+        }
+        i = characterArray.indexOf(player);
+        j = characterArray.indexOf(enemy);
+        $("#enemy-HP").html("<p>Enemy HP"+ characterArray[j].HP+"</p>");
+        console.log(characterArray[j].HP);
+    } 
+    }
+
 
 //obejct for Sam's health and attack stats
 var samC = {
@@ -60,104 +88,93 @@ var danielJ= {
     specialAbility:"research"
 };
 
-var characterArray=["jack", "sam", "tealc", "daniel"];
-
 
 //on click at the beginning of the game, selecting character and enemy, Jack
-$("#jackLeft").on("click", function(){
+$("#jack").on("click", function(){
     if(choser==false){
    $("#jack").addClass("glowing-choice");
     selectCharacters();
     $("#jackImg").addClass("glowing-choice");
     $("#jackImg").appendTo("#chosen-character");
-    player="jack";
+    player=characterArray[0];
     console.log(player);
+    console.log(typeof(player));
+    console.log(characterArray.indexOf(player));    
     }
     else{
-        enemy="jack";
+        enemy=characterArray[0];
         $("#jackImg").appendTo("#enemy-character");
         $("#jackImg").addClass("glowing-enemy");        
         clearBeginning();
-        attackPhase=true;
+        attackPhase();
     }
 });
 
 //on click at the beginning of the game, selecting character and enemy, Sam
-$("#samLeft").on("click", function(){
+$("#sam").on("click", function(){
     if(choser==false){
    $("#sam").addClass("glowing-choice");
     selectCharacters();
     $("#samImg").addClass("glowing-choice");
     $("#samImg").appendTo("#chosen-character");
-    player="sam";
+    player=characterArray[1];
     console.log(player);
     }
     else{
-        enemy="sam";
+        enemy=characterArray[1];
         $("#samImg").appendTo("#enemy-character");
-        $("#samImg").addClass("glowing-enemy");        
-        clearBeginning();     
-        attackPhase=true;
+        $("#samImg").addClass("glowing-enemy pull-right");        
+        clearBeginning();   
+        console.log(enemy);  
+        console.log(typeof(enemy));
+        console.log(characterArray.indexOf(enemy));
+        attackPhase();
         
     }
 });
 
 //on click at the beginning of the game, selecting character and enemy, Teal'c
-$("#tealcLeft").on("click", function(){
+$("#tealc").on("click", function(){
     if(choser==false){
    $("#tealc").addClass("glowing-choice");
     selectCharacters();
     $("#tealcImg").addClass("glowing-choice");
     $("#tealcImg").appendTo("#chosen-character");
-    player="tealc";
+    player=characterArray[2];
     console.log(player);
     }
     else{
-        enemy="tealc";
+        enemy=characterArray[2];
         $("#tealcImg").addClass("glowing-enemy");        
         $("#tealcImg").appendTo("#enemy-character");
         clearBeginning();        
-        attackPhase=true;
+        console.log(enemy);
+        attackPhase();
         
     }
 });
 
 //on click at the beginning of the game, selecting character and enemy,Daniel
-$("#danielLeft").on("click", function(){
+$("#daniel").on("click", function(){
     if(choser==false){
    $("#daniel").addClass("glowing-choice");
     selectCharacters();
     $("#danielImg").addClass("glowing-choice");
     $("#danielImg").appendTo("#chosen-character");
-    player="daniel";
+    player=characterArray[3];
     console.log(player);
     }
-    else{
-        enemy="daniel";
+    else if(choser==true){
+        enemy=characterArray[3];
         $("#danielImg").appendTo("#enemy-character");  
         $("#danielImg").addClass("glowing-enemy");        
         clearBeginning();
-        attackPhase=true;
+        attackPhase();
         
         
     }
 });
-console.log(characterArray.indexOf(player));
-console.log(player); //why is this not logging the chosen player?
-console.log(enemy); //of the chosen enemy?
 
-//when the player and enemy have been chosen, the following code runs.
-if(attackPhase==true){
-    console.log("success");
-    //attack button appears when both characters chosen
-    $("#attack-button").addClass("btn btn-large btn-danger");
-    //text for attack button is different if the player is Teal'c
-    if(player==tealcJ){
-        $("#attack-button").text("Jaffa! Cree!");        
-    }
-    //text for attack button with human characters
-    else{
-    $("#attack-button").text("Attack!");
-    }
+ $("#attack-button").on("click", function(){
 
-}
+ });
