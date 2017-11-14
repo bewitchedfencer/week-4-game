@@ -6,6 +6,9 @@ var enemy="";
 var i=-1;
 var j=-1;
 var characterArray=[]; //is there any way to make an array of objects?
+var specialX=0;  //special ability counter for enemy
+var specialY=0;
+
 
 function initialize(){
 choser=false;
@@ -64,8 +67,9 @@ function selectCharacters(){
         j = characterArray.indexOf(enemy);
         $("#enemy-HP").html("<p>Enemy HP "+ characterArray[j].HP+"</p>");
         $("#enemy-special").html("<p>Enemy Special "+ characterArray[j].specialAbility+ "</p>");
-        // $("#enemySpecialCounter").html add html for progress bar
-        // progress bar for the player special
+        // specialX=10; this will go up by 10 for each attack
+        $("#enemySpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
+        $("#playerSpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
         $("#player-special").html("<p>Player Special "+characterArray[i].specialAbility+"<p>");
         $("#player-HP").html("<p>Player HP "+characterArray[i].HP+"</p>");
     }
