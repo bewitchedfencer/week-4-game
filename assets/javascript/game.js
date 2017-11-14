@@ -68,8 +68,9 @@ function selectCharacters(){
         $("#enemy-HP").html("<p>Enemy HP "+ characterArray[j].HP+"</p>");
         $("#enemy-special").html("<p>Enemy Special "+ characterArray[j].specialAbility+ "</p>");
         // specialX=10; this will go up by 10 for each attack
-        $("#enemySpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
-        $("#playerSpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
+       //redo the progress bars using two divs, one as a container and another showing the progress
+        // $("#enemySpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
+        // $("#playerSpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
         $("#player-special").html("<p>Player Special "+characterArray[i].specialAbility+"<p>");
         $("#player-HP").html("<p>Player HP "+characterArray[i].HP+"</p>");
     }
