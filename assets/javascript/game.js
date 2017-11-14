@@ -5,9 +5,23 @@ var player="";
 var enemy="";
 var i=-1;
 var j=-1;
-var characterArray=["jack", "sam", "tealc", "daniel"]; //is there any way to make an array of objects?
+var characterArray=[]; //is there any way to make an array of objects?
 
-
+function initialize(){
+choser=false;
+player="";
+enemy="";
+i=-1;
+j=-1;
+characterArray=[];
+for(var t=0; t<4; t++){
+    characterArray.push(jackO);
+    characterArray.push(samC);
+    characterArray.push(tealcJ);
+    characterArray.push(danielJ);
+    console.log(characterArray[t]);
+}
+}
 //declared function for what happens when player selects their character
 function selectCharacters(){
     $("#enemy-HP").html("Who will you battle?");
@@ -23,16 +37,6 @@ function selectCharacters(){
         $("#enemy-HP").empty();
         // do animation to get these off screen to the left
     }
-
-//object for Jack's health and attack stats
-var jackO = {
-    name:"jack",
-    HP: 100,
-    Attack: 6,
-    CounterAttack:8,
-    specialCounter:0,
-    specialAbility:"sarcasm"
-};
 
    //when the player and enemy have been chosen, the following code runs.
    function attackPhase(){
@@ -50,13 +54,31 @@ var jackO = {
         else{
         $("#attack-button").text("Attack!");
         }
-        i = characterArray.indexOf(player);
-        j = characterArray.indexOf(enemy);
-        $("#enemy-HP").html("<p>Enemy HP"+ characterArray[j].HP+"</p>");
+        attackUpdate();
         console.log(characterArray[j].HP);
     } 
     }
 
+    function attackUpdate(){
+        i = characterArray.indexOf(player);
+        j = characterArray.indexOf(enemy);
+        $("#enemy-HP").html("<p>Enemy HP "+ characterArray[j].HP+"</p>");
+        $("#enemy-special").html("<p>Enemy Special "+ characterArray[j].specialAbility+ "</p>");
+        // $("#enemySpecialCounter").html add html for progress bar
+        // progress bar for the player special
+        $("#player-special").html("<p>Player Special "+characterArray[i].specialAbility+"<p>");
+        $("#player-HP").html("<p>Player HP "+characterArray[i].HP+"</p>");
+    }
+
+    //object for Jack's health and attack stats
+var jackO = {
+    name:"jack",
+    HP: 100,
+    Attack: 6,
+    CounterAttack:8,
+    specialCounter:0,
+    specialAbility:"sarcasm"
+};
 
 //obejct for Sam's health and attack stats
 var samC = {
@@ -178,3 +200,5 @@ $("#daniel").on("click", function(){
  $("#attack-button").on("click", function(){
 
  });
+
+ initialize();
