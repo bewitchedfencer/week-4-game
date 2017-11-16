@@ -239,7 +239,8 @@ $("#daniel").on("click", function(){
  $("#attack-button").on("click", function(){
     $("#zat").get(0).play();    
     characterArray[j] //enemy in array.
-    characterArray[j].HP -= characterArray[i].Attack;
+    enemyHealth=characterArray[j].HP 
+    enemyHealth-= characterArray[i].Attack;
     characterArray[i].Attack += playerAttack;
     playerHealth-=characterArray[j].CounterAttack;
     specialX+=10;
@@ -256,7 +257,7 @@ $("#daniel").on("click", function(){
     roundWinner();
     //if enemy health is <=0
     //if player health is <=0
-    $("#enemy-HP").html("<p>Enemy HP "+ characterArray[j].HP+"</p>");
+    $("#enemy-HP").html("<p>Enemy HP "+ enemyHealth+"</p>");
     $("#player-HP").html("<p>Player HP "+playerHealth+"</p>");    
     $("#enemySpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>");
     $("#playerSpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialY + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>");
@@ -271,8 +272,9 @@ function playerSpecial(){
  if(specialY==100){
      $("#playerSpecialCounter").one("click", function(){
         var specialPlayerAttack = Math.floor(Math.random()*(20 - 1 + 1)) + 1; 
-        characterArray[j].HP-= specialPlayerAttack;
-        $("#enemy-HP").html("<p>Enemy HP "+ characterArray[j].HP+"</p>");        
+        enemyHealth-= specialPlayerAttack;
+        $("#enemy-HP").html("<p>Enemy HP "+ enemyHealth+"</p>");        
+        console.log("special", enemyHealth)   
      });
  }
  //why is this not reseting?
