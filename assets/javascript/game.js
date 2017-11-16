@@ -11,13 +11,15 @@ var specialY=0;
 var playerHealth=0;
 var playerAttack=0;
 var enemyHealth=0;
+var enemiesDown=0;
 
 
 
 function initialize(){
-choser=false;
-player="";
 enemy="";
+playerHealth=0;
+playerAttack=0;
+enemyHealth=0;
 i=-1;
 j=-1;
 characterArray=[];
@@ -37,6 +39,20 @@ function selectCharacters(){
     choser=true;
     }
 
+function startingStats(){
+    $("#jackHealth").html(characterArray[0].HP);
+    $("#jackBaseAttack").html(characterArray[0].Attack);
+    $("#jackCounterAttack").html(characterArray[0].CounterAttack);
+    $("#samHealth").html(characterArray[1].HP);
+    $("#samBaseAttack").html(characterArray[1].Attack);
+    $("#samCounterAttack").html(characterArray[1].CounterAttack);
+    $("#tealcHealth").html(characterArray[2].HP);
+    $("#tealcBaseAttack").html(characterArray[2].Attack);
+    $("#tealcCounterAttack").html(characterArray[2].CounterAttack);
+    $("#danielHealth").html(characterArray[3].HP);
+    $("#danielBaseAttack").html(characterArray[3].Attack);
+    $("#danielCounterAttack").html(characterArray[3].CounterAttack);
+}
     // //resets the screen so that 
     // function clearBeginning(){
     //     $(".col-xs-3").empty();
@@ -223,24 +239,28 @@ $("#daniel").on("click", function(){
  $("#attack-button").on("click", function(){
     $("#zat").get(0).play();    
     characterArray[j] //enemy in array.
-    enemyHealth=characterArray[j].HP 
-    enemyHealth-= characterArray[i].Attack;
+    characterArray[j].HP -= characterArray[i].Attack;
     characterArray[i].Attack += playerAttack;
     playerHealth-=characterArray[j].CounterAttack;
     specialX+=10;
     specialY+=10;
     enemySpecial();
     playerSpecial();
-    console.log("player health", playerHealth)
-    loser();
+    console.log("player health", playerHealth);
+    //if player health goes to 0
+    if(playerHealth<=0){
+        $(".arena").removeClass("arena-active");
+        $(".arena").html("Game Over!");
+        initialize();
+    }
+    roundWinner();
     //if enemy health is <=0
     //if player health is <=0
-    $("#enemy-HP").html("<p>Enemy HP "+ enemyHealth+"</p>");
+    $("#enemy-HP").html("<p>Enemy HP "+ characterArray[j].HP+"</p>");
     $("#player-HP").html("<p>Player HP "+playerHealth+"</p>");    
     $("#enemySpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>");
     $("#playerSpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialY + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>");
     console.log(specialX)
-    console.log(characterArray[j].HP);
     console.log(playerHealth);
  });
 
@@ -251,9 +271,8 @@ function playerSpecial(){
  if(specialY==100){
      $("#playerSpecialCounter").one("click", function(){
         var specialPlayerAttack = Math.floor(Math.random()*(20 - 1 + 1)) + 1; 
-        enemyHealth-= specialPlayerAttack;
-        $("#enemy-HP").html("<p>Enemy HP "+ enemyHealth+"</p>");        
-        console.log("special", enemyHealth)   
+        characterArray[j].HP-= specialPlayerAttack;
+        $("#enemy-HP").html("<p>Enemy HP "+ characterArray[j].HP+"</p>");        
      });
  }
  //why is this not reseting?
@@ -263,22 +282,26 @@ function playerSpecial(){
  
 }
 
-//why does nothing happen here???
-function loser(){
-    if(playerHealth==0){
-        console.log("hellloooo???");
-        $("#arena").removeClass("arena-active");
-        $("#arena").html("Game Over!");
-        initialize();
-    }
-}
-
  //write following conditions:
  //if enemy HP==0
  //if all enemy HP==0
-function winner(){
-    
+function roundWinner(){
+    if(enemyHealth<=0){
+        enemiesDown++;
+        $("#enemy-character").empty();
+        initialize();
+        attackUpdate();
+    }
+    winner();
 }
 
+function winner(){
+    if(enemiesDown==3){
+        $(".arena").removeClass("arena-active");
+        $(".arena").html("You Win!!");
+    }
+}
 
  initialize();
+ startingStats();
+ 
