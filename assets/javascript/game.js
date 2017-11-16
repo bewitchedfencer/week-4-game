@@ -5,11 +5,12 @@ var player="";
 var enemy="";
 var i=-1;
 var j=-1;
-var characterArray=[]; //is there any way to make an array of objects?
+var characterArray=[]; 
 var specialX=0;  //special ability counter for enemy
 var specialY=0;
 var playerHealth=0;
 var playerAttack=0;
+var enemyHealth=0;
 
 
 
@@ -35,12 +36,11 @@ for(var t=0; t<4; t++){
 function selectCharacters(){
     choser=true;
     }
-    //resets the screen so that 
-    function clearBeginning(){
-        $(".col-xs-3").empty();
-        $("#enemy-HP").empty();
-        // do animation to get these off screen to the left
-    }
+
+    // //resets the screen so that 
+    // function clearBeginning(){
+    //     $(".col-xs-3").empty();
+    // }
 
    //when the player and enemy have been chosen, the following code runs.
    function attackPhase(){
@@ -79,6 +79,15 @@ function selectCharacters(){
         $("#player-special").html("<p>Player Special "+characterArray[i].specialAbility+"<p>");
         $("#player-HP").html("<p>Player HP "+characterArray[i].HP+"</p>");
     }
+
+     //for enemy special abilities
+ function enemySpecial(){
+    if(specialX==100){
+        var specialAttack = Math.floor(Math.random()*(20 - 1 + 1)) + 1;
+        console.log("Enemy special", specialAttack);
+        playerHealth-=specialAttack;
+        specialX=0;
+    }}
 
     //object for Jack's health and attack stats
 var jackO = {
@@ -129,6 +138,7 @@ $("#jack").on("click", function(){
     $("#jackImg").addClass("glowing-choice");
     $("#jackImg").appendTo("#chosen-character");
     player=characterArray[0];
+    $("#jack").empty();
     console.log(player);
     console.log(typeof(player));
     console.log(characterArray.indexOf(player));    
@@ -136,8 +146,8 @@ $("#jack").on("click", function(){
     else{
         enemy=characterArray[0];
         $("#jackImg").appendTo("#enemy-character");
-        $("#jackImg").addClass("glowing-enemy pull-right");        
-        clearBeginning();
+        $("#jackImg").addClass("glowing-enemy pull-right");   
+        $("#jack").empty();     
         attackPhase();
     }
 });
@@ -149,6 +159,7 @@ $("#sam").on("click", function(){
     selectCharacters();
     $("#samImg").addClass("glowing-choice");
     $("#samImg").appendTo("#chosen-character");
+    $("#sam").empty();
     player=characterArray[1];
     console.log(player);
     }
@@ -156,7 +167,7 @@ $("#sam").on("click", function(){
         enemy=characterArray[1];
         $("#samImg").appendTo("#enemy-character");
         $("#samImg").addClass("glowing-enemy pull-right");        
-        clearBeginning();   
+        $("#sam").empty();
         console.log(enemy);  
         console.log(typeof(enemy));
         console.log(characterArray.indexOf(enemy));
@@ -172,6 +183,7 @@ $("#tealc").on("click", function(){
     selectCharacters();
     $("#tealcImg").addClass("glowing-choice");
     $("#tealcImg").appendTo("#chosen-character");
+    $("#tealc").empty();
     player=characterArray[2];
     console.log(player);
     }
@@ -179,7 +191,7 @@ $("#tealc").on("click", function(){
         enemy=characterArray[2];
         $("#tealcImg").addClass("glowing-enemy pull-right");        
         $("#tealcImg").appendTo("#enemy-character");
-        clearBeginning();        
+        $("#tealc").empty();        
         console.log(enemy);
         attackPhase();
         
@@ -193,6 +205,7 @@ $("#daniel").on("click", function(){
     selectCharacters();
     $("#danielImg").addClass("glowing-choice");
     $("#danielImg").appendTo("#chosen-character");
+    $("#daniel").empty();
     player=characterArray[3];
     console.log(player);
     }
@@ -200,7 +213,7 @@ $("#daniel").on("click", function(){
         enemy=characterArray[3];
         $("#danielImg").appendTo("#enemy-character");  
         $("#danielImg").addClass("glowing-enemy pull-right");        
-        clearBeginning();
+        $("#daniel").empty();
         attackPhase();
         
         
@@ -210,24 +223,62 @@ $("#daniel").on("click", function(){
  $("#attack-button").on("click", function(){
     $("#zat").get(0).play();    
     characterArray[j] //enemy in array.
-    characterArray[j].HP -= characterArray[i].Attack;
+    enemyHealth=characterArray[j].HP 
+    enemyHealth-= characterArray[i].Attack;
     characterArray[i].Attack += playerAttack;
     playerHealth-=characterArray[j].CounterAttack;
     specialX+=10;
     specialY+=10;
-    $("#enemySpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
-    $("#playerSpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
+    enemySpecial();
+    playerSpecial();
+    console.log("player health", playerHealth)
+    loser();
+    //if enemy health is <=0
+    //if player health is <=0
+    $("#enemy-HP").html("<p>Enemy HP "+ enemyHealth+"</p>");
+    $("#player-HP").html("<p>Player HP "+playerHealth+"</p>");    
+    $("#enemySpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>");
+    $("#playerSpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialY + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>");
     console.log(specialX)
     console.log(characterArray[j].HP);
     console.log(playerHealth);
  });
 
+
+
+ //for player special abilitiies
+function playerSpecial(){
+ if(specialY==100){
+     $("#playerSpecialCounter").one("click", function(){
+        var specialPlayerAttack = Math.floor(Math.random()*(20 - 1 + 1)) + 1; 
+        enemyHealth-= specialPlayerAttack;
+        $("#enemy-HP").html("<p>Enemy HP "+ enemyHealth+"</p>");        
+        console.log("special", enemyHealth)   
+     });
+ }
+ //why is this not reseting?
+ SpecialY=0;
+ console.log(SpecialY);
+ $("#playerSpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialY + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>");
+ 
+}
+
+//why does nothing happen here???
+function loser(){
+    if(playerHealth==0){
+        console.log("hellloooo???");
+        $("#arena").removeClass("arena-active");
+        $("#arena").html("Game Over!");
+        initialize();
+    }
+}
+
  //write following conditions:
  //if enemy HP==0
  //if all enemy HP==0
- //if player HP==0
- //if special X and Y get to 100
-
+function winner(){
+    
+}
 
 
  initialize();
