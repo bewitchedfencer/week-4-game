@@ -94,36 +94,18 @@ img{
     width:100%;
 }
 
-#enemy-HP{
-    background-color:red;
-}
-
-#enemy-special{
-    background-color:purple;    
-}
-
-#enemySpecialCounter{
-    background-color: blue;    
-}
-
-#playerSpecialCounter{
-    background-color:pink;    
-}
-
-#player-special{
-    background-color:yellow;    
-}
-
-/* #player-HP{
-    background-color:green;    
-}
 .progress-container{
     width:100%;
     border: 1px solid black;
     color:gray;
     line-height: 20px;
-} */
+} 
 
+.fight-text{
+    font-family: 'Martel', serif;
+    font-size:20px;
+    color:black;
+}
 
 
 

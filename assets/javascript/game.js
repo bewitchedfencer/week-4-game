@@ -8,6 +8,9 @@ var j=-1;
 var characterArray=[]; //is there any way to make an array of objects?
 var specialX=0;  //special ability counter for enemy
 var specialY=0;
+var playerHealth=0;
+var playerAttack=0;
+
 
 
 function initialize(){
@@ -17,6 +20,8 @@ enemy="";
 i=-1;
 j=-1;
 characterArray=[];
+specialX=0;
+specialY=0;
 for(var t=0; t<4; t++){
     characterArray.push(jackO);
     characterArray.push(samC);
@@ -24,15 +29,11 @@ for(var t=0; t<4; t++){
     characterArray.push(danielJ);
     console.log(characterArray[t]);
 }
+
 }
 //declared function for what happens when player selects their character
 function selectCharacters(){
-    $("#enemy-HP").html("Who will you battle?");
-    $(".name").empty();
     choser=true;
-    
-    console.log("do you see me?");
-    
     }
     //resets the screen so that 
     function clearBeginning(){
@@ -49,8 +50,10 @@ function selectCharacters(){
         $(".arena").addClass("arena-active");
         //attack button appears when both characters chosen
         $("#attack-button").addClass("btn btn-large btn-danger text-center");
+        //adding background color to text elements
+        $(".fight-text").css("background-color", "rgba(223,234,230, .7");    
         //text for attack button is different if the player is Teal'c
-        if(player=="tealc"){
+        if(player==characterArray[2]){
             $("#attack-button").text("Jaffa! Cree!");        
         }
         //text for attack button with human characters
@@ -60,17 +63,19 @@ function selectCharacters(){
         attackUpdate();
         console.log(characterArray[j].HP);
     } 
+    $("#theme").get(0).play();
     }
 
     function attackUpdate(){
+        //finds the index number for the player and enemy and uses that to find the objects in the array
         i = characterArray.indexOf(player);
         j = characterArray.indexOf(enemy);
+        playerHealth=characterArray[i].HP;
+        playerAttack=characterArray[i].Attack;  
         $("#enemy-HP").html("<p>Enemy HP "+ characterArray[j].HP+"</p>");
         $("#enemy-special").html("<p>Enemy Special "+ characterArray[j].specialAbility+ "</p>");
-        // specialX=10; this will go up by 10 for each attack
-       //redo the progress bars using two divs, one as a container and another showing the progress
-        // $("#enemySpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
-        // $("#playerSpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
+        $("#enemySpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
+        $("#playerSpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
         $("#player-special").html("<p>Player Special "+characterArray[i].specialAbility+"<p>");
         $("#player-HP").html("<p>Player HP "+characterArray[i].HP+"</p>");
     }
@@ -131,7 +136,7 @@ $("#jack").on("click", function(){
     else{
         enemy=characterArray[0];
         $("#jackImg").appendTo("#enemy-character");
-        $("#jackImg").addClass("glowing-enemy");        
+        $("#jackImg").addClass("glowing-enemy pull-right");        
         clearBeginning();
         attackPhase();
     }
@@ -172,7 +177,7 @@ $("#tealc").on("click", function(){
     }
     else{
         enemy=characterArray[2];
-        $("#tealcImg").addClass("glowing-enemy");        
+        $("#tealcImg").addClass("glowing-enemy pull-right");        
         $("#tealcImg").appendTo("#enemy-character");
         clearBeginning();        
         console.log(enemy);
@@ -194,7 +199,7 @@ $("#daniel").on("click", function(){
     else if(choser==true){
         enemy=characterArray[3];
         $("#danielImg").appendTo("#enemy-character");  
-        $("#danielImg").addClass("glowing-enemy");        
+        $("#danielImg").addClass("glowing-enemy pull-right");        
         clearBeginning();
         attackPhase();
         
@@ -203,7 +208,26 @@ $("#daniel").on("click", function(){
 });
 
  $("#attack-button").on("click", function(){
-
+    $("#zat").get(0).play();    
+    characterArray[j] //enemy in array.
+    characterArray[j].HP -= characterArray[i].Attack;
+    characterArray[i].Attack += playerAttack;
+    playerHealth-=characterArray[j].CounterAttack;
+    specialX+=10;
+    specialY+=10;
+    $("#enemySpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
+    $("#playerSpecialCounter").html("<div class='progress'> <div class='progress-bar progress-bar-success' role='progressbar' aria-valuenow='40' aria-valuemin='0' aria-valuemax='100' style='width:" + specialX + "%'> <span class='sr-only'>40% Complete (success)</span></div></div>")
+    console.log(specialX)
+    console.log(characterArray[j].HP);
+    console.log(playerHealth);
  });
+
+ //write following conditions:
+ //if enemy HP==0
+ //if all enemy HP==0
+ //if player HP==0
+ //if special X and Y get to 100
+
+
 
  initialize();

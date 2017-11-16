@@ -20,13 +20,17 @@
 </head>
 
 <body>
+    <audio id="theme" src="assets/stargateTheme.mp3" loop="loop" type="audio/mpeg">
+    </audio>
+    <audio id="zat" src="assets/zat_gun.mp3" type="audio/mpeg">
+    </audio>
     <div class="container">
         <div class="row beginning-stats">
             <!-- Left side of the screen, where the player initially picks a character -->
             <!-- Stat card for Jack O'Neill -->
             <!-- Jack image and name on the left of stat card -->
             <div class="col-xs-3">
-                <div class="row  stat-card" id="jack">
+                <div class="row stat-card" id="jack">
                     <div class="col-xs-6">
                         <h1 class="text-center text-normal">Jack O'Neill</h1>
                         <img class="img-responsive characters" id="jackImg" src="assets/images/Jack-Oneill.jpg" alt="Jack O'Neill">
@@ -136,28 +140,28 @@
         <div class="row specs">
             <div class="col-xs-6">
                 <div class="row">
-                    <div class="col-xs-12 text-normal" id="enemy-HP">
+                    <div class="col-xs-12 text-center fight-text" id="enemy-HP">
                     </div>
                 </div>
                 <div class="row">
-                    <div class=" text-normal col-xs-12" id="enemy-special">
+                    <div class="col-xs-12 text-center fight-text" id="enemy-special">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 specialCounter" id="enemySpecialCounter"></div>
+                    <div class="col-xs-12 text-center specialCounter" id="enemySpecialCounter"></div>
                 </div>
             </div>
             <div class="col-xs-6">
                 <div class="row">
-                    <div class="text-normal col-xs-2" id="player-HP">
+                    <div class="col-xs-12 text-center fight-text" id="player-HP">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="text-normal col-xs-2" id="player-special">
+                    <div class="col-xs-12 text-center fight-text" id="player-special">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-2 specialCounter" id="playerSpecialCounter"></div>
+                    <div class="col-xs-12 text-center specialCounter" id="playerSpecialCounter"></div>
                     <!-- <div class="progress-container">
                         <div id="progressBarPlayer">
                         </div> -->
