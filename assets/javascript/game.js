@@ -1,18 +1,14 @@
 //establish variables
 //boolean for determining if the player is choosing their character or enemy character
 var choser = false;
-var player="";
-var enemy="";
+var player={};
+var enemy={};
 var i=-1;
 var j=-1;
-var characterArray=[]; 
-var specialX=0;  //special ability counter for enemy
-var specialY=0;
-var playerHealth=0;
-var playerAttack=0;
-var enemyHealth=0;
-var enemiesDown=0;
 
+//need to create an array of objects with the character information
+//when the user selects the hero and the enemy, the constructors are run to create
+//the hero and enemy objects
 
 
 function initialize(){
