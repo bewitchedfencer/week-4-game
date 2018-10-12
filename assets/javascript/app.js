@@ -8,6 +8,8 @@ var players = [];
 //Function Declarations
 //===============================================
 
+//special abilities are still not working. See the Wk11 Thursday activities
+
 //starts the game
 function initialize(){
     $("#arena").empty();
