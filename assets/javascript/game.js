@@ -9,6 +9,53 @@ var j=-1;
 //need to create an array of objects with the character information
 //when the user selects the hero and the enemy, the constructors are run to create
 //the hero and enemy objects
+//I should be able to allow the user to add their own character (added feature)
+
+    //object for Jack's health and attack stats
+    var characters = [jackO = {
+        name:"jack",
+        HP: 100,
+        Attack: 6,
+        CounterAttack:8,
+        specialCounter:0
+        // specialAbility:"sarcasm"
+    },
+    //obejct for Sam's health and attack stats
+    samC = {
+        name:"sam",
+        HP: 110,
+        Attack: 7,
+        CounterAttack:5,
+        specialCounter:0
+        // specialAbility:"astrophysics"
+    },
+    //object for Teal'c's health and attack stats
+    tealcJ= {
+        name:tealc,
+        HP: 140,
+        Attack: 8,
+        CounterAttack:6,
+        specialCounter:0
+        // specialAbility:"super strength"
+    },
+    //object for Daniel's health and attack stats
+    danielJ= {
+        name:"daniel",
+        HP: 120,
+        Attack: 5,
+        CounterAttack:7,
+        specialCounter:0
+        // specialAbility:"research"
+    }];
+
+
+function makeCards(){
+    
+    $(".beginning-cards").append()    
+}
+
+
+
 
 
 function initialize(){
@@ -101,45 +148,7 @@ function startingStats(){
         specialX=0;
     }}
 
-    //object for Jack's health and attack stats
-var jackO = {
-    name:"jack",
-    HP: 100,
-    Attack: 6,
-    CounterAttack:8,
-    specialCounter:0,
-    specialAbility:"sarcasm"
-};
 
-//obejct for Sam's health and attack stats
-var samC = {
-    name:"sam",
-    HP: 110,
-    Attack: 7,
-    CounterAttack:5,
-    specialCounter:0,
-    specialAbility:"astrophysics"
-};
-
-//object for Teal'c's health and attack stats
-var tealcJ= {
-    name:tealc,
-    HP: 140,
-    Attack: 8,
-    CounterAttack:6,
-    specialCounter:0,
-    specialAbility:"super strength"
-};
-
-//object for Daniel's health and attack stats
-var danielJ= {
-    name:"daniel",
-    HP: 120,
-    Attack: 5,
-    CounterAttack:7,
-    specialCounter:0,
-    specialAbility:"research"
-};
 
 
 //on click at the beginning of the game, selecting character and enemy, Jack

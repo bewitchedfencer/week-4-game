@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stargate SG-1 RPG</title>
+    <!-- Allows scalability for different sized screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Link to reset css -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <!-- Link to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Martel:400,700" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <!-- Link to styles in css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+
+<!-- 
+New features:
+Make it so that the cards are created via jquery. 
+The game starts with the four cards at the top of the player area. 
+Two cards move to the middle and attack buttons appear. Ability buttons/bars show progress and are clickable.
+-->
+
+
+<body>
+    <audio id="theme" src="assets/stargateTheme.mp3" loop="loop" type="audio/mpeg">
+    </audio>
+    <audio id="zat" src="assets/zat_gun.mp3" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <div class="row beginning-stats beginning-cards">
+            <!-- Top of the screen, where the player initially picks a character -->
+            <!-- Stat card for Jack O'Neill -->
+            <!-- Jack image and name on the left of stat card -->
+            <!-- <div class="col-xs-3">
+                <div class="row stat-card" id="jack">
+                    <div class="col-xs-6">
+                        <h1 class="text-center text-normal" value="jack">Jack O'Neill</h1>
+                        <img class="img-responsive characters" id="jackImg" value="jack" src="assets/images/Jack-Oneill.jpg" alt="Jack O'Neill">
+                    </div> -->
+                    <!-- Jack's stats on the right side of the stat card -->
+                    <!-- <div class="text-center col-xs-6 stats" value="jack" id="jackStats">
+                        <h1 class="statHeading">Stats</h1>
+                        <hr>
+                        <p>Health
+                            <span id="jackHealth"></span>
+                        </p>
+                        <p>Attack
+                            <span id="jackBaseAttack"></span>
+                        </p>
+                        <p>Counter Attack
+                            <span id="jackCounterAttack"></span>
+                        </p>
+                        <p>Special Power: Sarcasm</p>
+                    </div>
+                </div>
+            </div> -->
+            <!-- Sam's stat card -->
+            <!-- Left side of Sam's stat card -->
+            <!-- <div class="col-xs-3">
+                <div class="row stat-card" id="sam">
+                    <div class="col-xs-6">
+                        <h1 class="text-center name text-normal" value="sam">Dr. Samantha Carter</h1>
+                        <img class="img-responsive characters" id="samImg" src="assets/images/Sam-Carter.jpg" alt="Samantha Carter">
+                    </div> -->
+                    <!-- Sam's stats -->
+                    <!-- <div class="stats col-xs-6 text-center" id="samStats">
+                        <h1 class="statHeading">Stats</h1>
+                        <hr>
+                        <p>Health
+                            <span id="samHealth"></span>
+                        </p>
+                        <p>Attack
+                            <span id="samBaseAttack"></span>
+                        </p>
+                        <p>Counter Attack
+                            <span id="samCounterAttack"></span>
+                        </p>
+                        <p>Special Power: Astrophysics</p>
+                    </div>
+                </div>
+            </div> -->
+            <!-- Teal'c's stat card -->
+            <!-- Teal'c's image and name on the left side of stat card -->
+            <!-- <div class="col-xs-3">
+                <div class="row stat-card" id="tealc">
+                    <div class="col-xs-6">
+                        <h1 class="text-center name text-normal">Teal'c the Jaffa</h1>
+                        <img class="img-responsive characters" id="tealcImg" src="assets/images/Tealc.jpg" alt="Teal'c the Jaffa">
+                    </div> -->
+                    <!-- Teal'c's stats -->
+                    <!-- <div class="stats col-xs-6 text-center" id="tealcStats">
+                        <h1 class="statHeading">Stats</h1>
+                        <hr>
+                        <p>Health
+                            <span id="tealcHealth"></span>
+                        </p>
+                        <p>Attack
+                            <span id="tealcBaseAttack"></span>
+                        </p>
+                        <p>Counter Attack
+                            <span id="tealcCounterAttack"></span>
+                        </p>
+                        <p>Special Power: Super Strength</p>
+                    </div>
+                </div>
+            </div> -->
+            <!-- Daniel's stat card -->
+            <!-- Daniel's image and name on the left side of the stat card -->
+            <!-- <div class="col-xs-3">
+                <div class="row stat-card" id="daniel">
+                    <div class="col-xs-6">
+                        <h1 class="text-center name text-normal">Dr. Daniel Jackson</h1>
+                        <img class="img-responsive characters" id="danielImg" src="assets/images/Daniel-Jackson.jpg" alt="Daniel Jackson">
+
+                    </div> -->
+                    <!-- Daniel's stats -->
+                    <!-- <div class=" stats col-xs-6 text-center" id="danielStats">
+                        <h1 class="statHeading">Stats</h1>
+                        <hr>
+                        <p>Health
+                            <span id="danielHealth"></span>
+                        </p>
+                        <p>Attack
+                            <span id="danielBaseAttack"></span>
+                        </p>
+                        <p>Counter Attack
+                            <span id="danielCounterAttack"></span>
+                        </p>
+                        <p>Special Power: Research</p>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div class="row arena text-center">
+            <div class="col-xs-4" id="enemy-character"></div>
+            <div class="col-xs-4 text-center instructions">
+                <div id="attack-button"></div>
+            </div>
+            <div class="col-xs-4" id="chosen-character"></div>
+
+        </div>
+        <div class="row specs">
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-12 text-center fight-text" id="enemy-HP">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center fight-text" id="enemy-special">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center specialCounter" id="enemySpecialCounter"></div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-12 text-center fight-text" id="player-HP">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center fight-text" id="player-special">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center specialCounter" id="playerSpecialCounter"></div>
+                    <!-- <div class="progress-container">
+                        <div id="progressBarPlayer">
+                        </div> -->
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/javascript/game.js"></script>
+</body>
+
+</html>

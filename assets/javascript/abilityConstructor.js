@@ -4,4 +4,5 @@ var Ability = function(abilityName, threshhold, abilityAttack){
     this.abilityAttack = abilityAttack;
 };
 
-module.exports = Ability;
+
+//can't use module.exports to export. That is only for node.js
