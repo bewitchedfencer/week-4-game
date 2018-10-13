@@ -8,7 +8,7 @@ var Character = function(name, image, HP, attack, counterAttack){
     this.specialCounter = 0;
     this.ability = {};
     this.specialAbility = function(abilityName, threshhold, abilityAttack){
-        this.ability = new Ability(abilityName, threshhold, abilityAttack);
+        this.ability = ( new Ability(abilityName, threshhold, abilityAttack));
     };
     this.addSpecial = function(){
         return this.specialCounter++;
