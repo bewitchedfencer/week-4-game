@@ -5,20 +5,22 @@ var Sam;
 var Tealc;
 var Daniel;
 var players = [];
+var chosen = true;
+var firstRun = 0;
 //Function Declarations
 //===============================================
 
 //starts the game
 function initialize(){
     $("#arena").empty();
-    Jack = new Character("Jack O'Neil", "assets/images/Jack-Oneill.jpg", 150, 8, 10);
+    Jack = new Character("Jack", "assets/images/Jack-Oneill.jpg", 150, 8, 10);
     // console.log(Jack);
     Jack.specialAbility("Sarcasm", 7, 30); 
-    Sam = new Character("Dr. Samantha Carter", "assets/images/Sam-Carter.jpg", 140, 9, 10);
+    Sam = new Character("Sam", "assets/images/Sam-Carter.jpg", 140, 9, 10);
     Sam.specialAbility("Astrophysics", 7, 30);
-    Tealc = new Character("Teal'c", "assets/images/Tealc.jpg", 200, 10, 9);
+    Tealc = new Character("Tealc", "assets/images/Tealc.jpg", 200, 10, 9);
     Tealc.specialAbility("Super Strength", 9, 25);
-    Daniel = new Character("Dr. Daniel Jackson", "assets/images/Daniel-Jackson.jpg", 130, 7, 8);
+    Daniel = new Character("Daniel", "assets/images/Daniel-Jackson.jpg", 130, 7, 8);
     Daniel.specialAbility("Research", 6, 40);
     players = [Jack, Sam, Tealc, Daniel];
     console.log(players);
@@ -28,8 +30,8 @@ function initialize(){
 //creates the cards to select
 function makeCards(anArray){
     anArray.forEach(function(element, index) {
-    console.log("element", element); //this is the object
-    console.log("index", index);  //this is where the object is in the array
+    // console.log("element", element); //this is the object
+    // console.log("index", index);  //this is where the object is in the array
     //creates the entire card
     var cardHolder = $("<div>");
     cardHolder.addClass("stat-card row");
@@ -38,9 +40,52 @@ function makeCards(anArray){
     stats.addClass("col-xs-5 text-normal stats")
     cardHolder.append(image);
     cardHolder.append(stats);
+    cardHolder.attr("data-id", element.name);
+    if(firstRun<players.length){
     $("#startCardHolder").append(cardHolder);
+    firstRun++;
+    }
+    else{
+        console.log("here");
+        if(chosen){
+        $("#hero").append(cardHolder);
+        chosen=false;        
+        }
+        else{
+            $("#enemy").append(cardHolder);
+            chosen=true;
+        }
+    }
     });
 }
+
+//function for clicking and selecting the cards
+//card should be made again but on the right side of the screen in the character selection area.
+//don't forget to add the glowing class to the selected ones. Class glowing-choice
+//empty the card area on the left when the second card is selected
+$(document).on("click", ".stat-card", function(){
+    // console.log("activated");
+    var chosenCharacter;
+        chosenCharacter=$(".stat-card").attr("data-id");
+        // console.log(chosenCharacter);
+        var chosenArr = $.grep(players, function(element, index){
+            console.log(element);
+            console.log(chosenCharacter);
+            return element.name !== chosenCharacter;
+        }, true);
+        console.log(chosenArr);
+        makeCards(chosenArr);
+        if(chosen){
+            $("#fight").removeClass("hide");
+        }
+        else{
+            $("#fight").addClass("hide");
+            
+        }
+})
+
+//function that is an on click for the fight button
+//the selection area should go away and the arena will be added to the body with the cards.
 
 //Function Calls
 //===============================================

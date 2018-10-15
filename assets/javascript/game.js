@@ -54,10 +54,6 @@ function makeCards(){
     $(".beginning-cards").append()    
 }
 
-
-
-
-
 function initialize(){
 enemy="";
 playerHealth=0;
