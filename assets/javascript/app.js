@@ -40,7 +40,7 @@ function makeCards(anArray){
     stats.addClass("col-xs-5 text-normal stats")
     cardHolder.append(image);
     cardHolder.append(stats);
-    cardHolder.attr("data-id", element.name);
+    cardHolder.attr("id", element.name);
     if(firstRun<players.length){
     $("#startCardHolder").append(cardHolder);
     firstRun++;
@@ -49,11 +49,10 @@ function makeCards(anArray){
         console.log("here");
         if(chosen){
         $("#hero").append(cardHolder);
-        chosen=false;        
         }
         else{
             $("#enemy").append(cardHolder);
-            chosen=true;
+            $("#enemy").addClass(".glowing-enemy");
         }
     }
     });
@@ -64,28 +63,42 @@ function makeCards(anArray){
 //don't forget to add the glowing class to the selected ones. Class glowing-choice
 //empty the card area on the left when the second card is selected
 $(document).on("click", ".stat-card", function(){
-    // console.log("activated");
+    // console.log("activated");    
     var chosenCharacter;
-        chosenCharacter=$(".stat-card").attr("data-id");
-        // console.log(chosenCharacter);
-        var chosenArr = $.grep(players, function(element, index){
+        //for some reason this is only returning Jack
+        chosenCharacter = $(this).attr("id");
+        console.log(chosenCharacter);
+        var chosenArr = players.filter(function(element){
             console.log(element);
             console.log(chosenCharacter);
-            return element.name !== chosenCharacter;
-        }, true);
+            if(element.name == chosenCharacter){
+                return element;
+            };
+        });
         console.log(chosenArr);
         makeCards(chosenArr);
-        if(chosen){
-            $("#fight").removeClass("hide");
+        if(chosen){         
+            $("#fight").removeClass("hide disabled");
+            localStorage.setItem("hero", chosenCharacter);
+            chosen=false;                    
         }
         else{
-            $("#fight").addClass("hide");
-            
+            $(".stat-card").addClass(".glowing-enemy");                        
+            $("#startCardHolder").empty();
+            localStorage.setItem("enemy", chosenCharacter);
+            chosen=true;
         }
-})
+});
+
+$("#fight").on("click", function(){
+    var hero = localStorage.getItem("hero");
+    var enemy = localStorage.getItem("enemy");
+
+});
 
 //function that is an on click for the fight button
 //the selection area should go away and the arena will be added to the body with the cards.
+//the fight button should also disappear (hide), add the class
 
 //Function Calls
 //===============================================
