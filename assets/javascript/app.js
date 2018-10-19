@@ -7,6 +7,7 @@ var Daniel;
 var players = [];
 var chosen = true;
 var firstRun = 0;
+var fighting = [];
 //Function Declarations
 //===============================================
 
