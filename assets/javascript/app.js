@@ -92,9 +92,39 @@ $(document).on("click", ".stat-card", function(){
 });
 
 $("#fight").on("click", function(){
+    $("#game").empty();
     var hero = localStorage.getItem("hero");
     var enemy = localStorage.getItem("enemy");
-
+    var chosenArr = players.filter(function(element){
+        if(element.name == hero){
+            return element;
+        };
+    });
+    chosenArr.concat(players.filter(function(element){
+        if(element.name == enemy){
+            return chosenArr.push(element);
+        };
+    }));
+    console.log(chosenArr);
+        var gameArena = $("<div>");
+        gameArena.addClass("row").attr("id", "gamePlaying");
+        $("#game").append("<div class='col-sm-12'>").append(gameArena);
+    chosenArr.forEach(function(element, index) {
+        // console.log("element", element); //this is the object
+        // console.log("index", index);  //this is where the object is in the array
+        //creates the entire card
+        var cardHolder = $("<div>");
+        cardHolder.addClass("stat-card col-xs-4");
+        cardHolder.append(`<div id=${element.name} class='row'>`);
+        var image = $("<img>").attr("src", element.image).addClass("img image img-responsive col-xs-5");
+        var stats = $("<div>").html(`<h3>${element.name}</h3>\n<p>Health: ${element.hp}</p>\n<p>Attack: ${element.attack}</p>\n<p>Counter Attack: ${element.counterAttack}</p>\n<p>Special Ability: ${element.ability.abilityName}</p>`);
+        stats.addClass("col-xs-5 text-normal stats")
+        cardHolder.append(image);
+        cardHolder.append(stats);
+        cardHolder.attr("id", element.name);
+        $('#gamePlaying').append(cardHolder);
+    });
+    $("#game").append("<div class='row'><button class='col-xs-6 btn btn-danger' id='attack'>Attack</button></div>");
 });
 
 //function that is an on click for the fight button

@@ -111,8 +111,14 @@ body{
 }
 
 /* the button stylings */
-#fight{
- 
+#gamePlaying{
+    position:relative;
+    margin-top:10%;
+    margin-left:20%;
+}
+
+#attack{
+    margin-left:23%;
 }
 
 
