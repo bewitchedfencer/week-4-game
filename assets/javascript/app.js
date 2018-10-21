@@ -122,10 +122,17 @@ $("#fight").on("click", function(){
         cardHolder.append(image);
         cardHolder.append(stats);
         cardHolder.attr("id", element.name);
+        //add the numbers for attack and counter attack onto the html elements
         $('#gamePlaying').append(cardHolder);
     });
     $("#game").append("<div class='row'><button class='col-xs-6 btn btn-danger' id='attack'>Attack</button></div>");
 });
+
+//function for clicking the attack button
+$(document).on("click", "#attack", function(){
+    var hero = localStorage.getItem("hero");
+    var enemy = localStorage.getItem("enemy");
+})
 
 //function that is an on click for the fight button
 //the selection area should go away and the arena will be added to the body with the cards.
