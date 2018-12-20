@@ -8,6 +8,10 @@ var players = [];
 var chosen = true;
 var firstRun = 0;
 var fighting = [];
+var playerHealth = 0;
+var enemyHealth = 0; 
+var hero
+var enemy
 //Function Declarations
 //===============================================
 
@@ -37,7 +41,7 @@ function makeCards(anArray){
     var cardHolder = $("<div>");
     cardHolder.addClass("stat-card row");
     var image = $("<img>").attr("src", element.image).addClass("img image img-responsive col-xs-5");
-    var stats = $("<div>").html(`<h3>${element.name}</h3>\n<p>Health: ${element.hp}</p>\n<p>Attack: ${element.attack}</p>\n<p>Counter Attack: ${element.counterAttack}</p>\n<p>Special Ability: ${element.ability.abilityName}</p>`);
+    var stats = $("<div>").html(`<h3>${element.name}</h3>\n<p>Health: ${element.hp}</p>\n<p>Max Attack: ${element.attack}</p>\n<p>Max Counter Attack: ${element.counterAttack}</p>\n<p>Special Ability: ${element.ability.abilityName}</p>`);
     stats.addClass("col-xs-5 text-normal stats")
     cardHolder.append(image);
     cardHolder.append(stats);
@@ -66,7 +70,6 @@ function makeCards(anArray){
 $(document).on("click", ".stat-card", function(){
     // console.log("activated");    
     var chosenCharacter;
-        //for some reason this is only returning Jack
         chosenCharacter = $(this).attr("id");
         console.log(chosenCharacter);
         var chosenArr = players.filter(function(element){
@@ -79,37 +82,36 @@ $(document).on("click", ".stat-card", function(){
         console.log(chosenArr);
         makeCards(chosenArr);
         if(chosen){         
-            $("#fight").removeClass("hide disabled");
-            localStorage.setItem("hero", chosenCharacter);
+            $("#fight").removeClass("hide");
+            chosenArr[0].status = "hero";
+            localStorage.setItem("hero", JSON.stringify(chosenArr[0]));
             chosen=false;                    
         }
         else{
+            $("#fight").removeClass("disabled");            
             $(".stat-card").addClass(".glowing-enemy");                        
             $("#startCardHolder").empty();
-            localStorage.setItem("enemy", chosenCharacter);
+            chosenArr[0].status = "enemy";            
+            //store in local storage as string. Restore to object in arena function ****
+            localStorage.setItem("enemy", JSON.stringify(chosenArr[0]));
             chosen=true;
         }
 });
 
 $("#fight").on("click", function(){
     $("#game").empty();
-    var hero = localStorage.getItem("hero");
-    var enemy = localStorage.getItem("enemy");
-    var chosenArr = players.filter(function(element){
-        if(element.name == hero){
-            return element;
-        };
-    });
-    chosenArr.concat(players.filter(function(element){
-        if(element.name == enemy){
-            return chosenArr.push(element);
-        };
-    }));
-    console.log(chosenArr);
+    hero = JSON.parse(localStorage.getItem("hero"));
+    enemy = JSON.parse(localStorage.getItem("enemy"));
+    // console.log("re-parsed", hero);
+    // console.log("re-parsed enemy", enemy);
+    //putting the hero and enemy in an array to create cards
+    var selectedArr = [hero, enemy];
+            //creating the game arena for the fight
+
         var gameArena = $("<div>");
         gameArena.addClass("row").attr("id", "gamePlaying");
         $("#game").append("<div class='col-sm-12'>").append(gameArena);
-    chosenArr.forEach(function(element, index) {
+    selectedArr.forEach(function(element, index) {
         // console.log("element", element); //this is the object
         // console.log("index", index);  //this is where the object is in the array
         //creates the entire card
@@ -117,7 +119,7 @@ $("#fight").on("click", function(){
         cardHolder.addClass("stat-card col-xs-4");
         cardHolder.append(`<div id=${element.name} class='row'>`);
         var image = $("<img>").attr("src", element.image).addClass("img image img-responsive col-xs-5");
-        var stats = $("<div>").html(`<h3>${element.name}</h3>\n<p>Health: ${element.hp}</p>\n<p>Attack: ${element.attack}</p>\n<p>Counter Attack: ${element.counterAttack}</p>\n<p>Special Ability: ${element.ability.abilityName}</p>`);
+        var stats = $("<div>").html(`<h3>${element.status}: ${element.name}</h3>\n<p>Health: <span id='health-${element.status}'>${element.hp}</span></p>\n<p>Attack: <span id='attack-${element.status}'>${element.attack}</span></p>\n<p>Counter Attack: <span id='counter-${element.status}'>${element.counterAttack}</span></p>\n<p>Special Ability:<span id='special-${element.status}'>${element.ability.abilityName}</span></p>`);
         stats.addClass("col-xs-5 text-normal stats")
         cardHolder.append(image);
         cardHolder.append(stats);
@@ -130,9 +132,31 @@ $("#fight").on("click", function(){
 
 //function for clicking the attack button
 $(document).on("click", "#attack", function(){
-    var hero = localStorage.getItem("hero");
-    var enemy = localStorage.getItem("enemy");
+//hero attacks enemy
+enemy.hp -= hero.attack;
+$("#health-enemy").text(enemy.hp);
+//enemy attacks character
+hero.hp -= enemy.attack;
+$("#health-hero").text(hero.hp);
+//character attack increases each time
+hero.attack += Math.floor(Math.random()*11)
+$("#attack-hero").text(hero.attack);
+//increment both specials randomly
+//check for specials each time
+
+
 })
+//     for(var i=0; i<players.length; i++){
+//         if(hero==players.name){
+          
+//         }
+//     }
+// })
+
+// //enemy attacks
+// function enemyAttack(enemyAttackMax){
+//     var
+// }
 
 //function that is an on click for the fight button
 //the selection area should go away and the arena will be added to the body with the cards.
